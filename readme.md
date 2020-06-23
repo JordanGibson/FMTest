@@ -3,8 +3,8 @@
 ## Set up
 
 For adding Fluent Migrator to a project, 2 nuget packages are required from the Nuget Package Manager:
- - FluentMigrator
- - FluentMigrator.Runner
+ - [![FluentMigrator](http://img.shields.io/nuget/dt/FluentMigrator.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator/)
+ - [![FluentMigrator.Runner](http://img.shields.io/nuget/dt/FluentMigrator.Runner.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator.Runner/)
 
 or execute the following command in the Package Manager Console (Tools > Nuget Packet Manager > Package Manager Console):
 
@@ -69,6 +69,10 @@ so we'll do that first.
                     // Build the service provider
                     .BuildServiceProvider(false);
             }
+
+Set the `dbConnectionString` in the format of:
+
+`Host=<HOSTNAME>;Database=<DB_NAME>;Username=<USERNAME>;Password=<PASSWORD>`
 
 We are defining the assembly containing the migrations,
 meaning that any migrations out of this assembly will not be included
@@ -149,8 +153,5 @@ in the command using the parameters -c, -p and -a respectively.
 <b>Validates the order of all applied migrations</b>
 
     validate versions
-
-
-
 
     
