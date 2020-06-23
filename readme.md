@@ -9,7 +9,7 @@ scripts that have to be run manually. Database schema
 changes are described in classes written in C#.
 
 Package      | Version   | Downloads
---------------------|----------
+--------------------|----------|-------------
 FluentMigrator    | [![FluentMigrator](https://img.shields.io/nuget/v/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/) | [![FluentMigrator](https://img.shields.io/nuget/dt/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/)
 FluentMigrator.Runner    | [![FluentMigratorRunner](https://img.shields.io/nuget/v/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/) | [![FluentMigratorRunner](https://img.shields.io/nuget/dt/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/)
 
