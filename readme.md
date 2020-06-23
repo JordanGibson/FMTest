@@ -24,8 +24,8 @@ If you notice a bug, you can [open an issue here](https://github.com/fluentmigra
 ## Set up
 
 For adding Fluent Migrator to a project, 2 nuget packages are required from the Nuget Package Manager:
- - [![FluentMigrator](http://img.shields.io/nuget/dt/FluentMigrator.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator/)
- - [![FluentMigrator.Runner](http://img.shields.io/nuget/dt/FluentMigrator.Runner.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator.Runner/)
+ - Fluent Migrator [![FluentMigrator](http://img.shields.io/nuget/dt/FluentMigrator.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator/)
+ - Fluent Migrator Runner [![FluentMigrator.Runner](http://img.shields.io/nuget/dt/FluentMigrator.Runner.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator.Runner/)
 
 or execute the following command in the Package Manager Console (Tools > Nuget Packet Manager > Package Manager Console):
 
