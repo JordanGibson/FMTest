@@ -78,8 +78,12 @@ namespace FMTest
                 // Execute the migrations
                 runner.MigrateUp();
 
+                runner.ListMigrations();
+
                 // Delays the completion of execution to observe console output
                 Console.ReadLine();
+
+                runner.MigrateDown(2);
             }
         }
 
@@ -97,7 +101,7 @@ namespace FMTest
                     // Set the connection string
                     .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=pass")
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(AddNewSchema).Assembly).For.Migrations())
+                    .ScanIn(typeof(CreateSecurityTable).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 // Build the service provider

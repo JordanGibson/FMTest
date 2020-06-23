@@ -1,5 +1,26 @@
 ﻿# Fluent Migrator
 
+## About
+
+Fluent Migrator is a migration framework for .NET much like Ruby 
+on Rails Migrations. Migrations are a structured way to alter 
+database schema and are an alternative to creating lots of sql 
+scripts that have to be run manually. Database schema 
+changes are described in classes written in C#.
+
+Package      | Version   | Downloads
+--------------------|----------
+FluentMigrator    | [![FluentMigrator](https://img.shields.io/nuget/v/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/) | [![FluentMigrator](https://img.shields.io/nuget/dt/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/)
+FluentMigrator.Runner    | [![FluentMigratorRunner](https://img.shields.io/nuget/v/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/) | [![FluentMigratorRunner](https://img.shields.io/nuget/dt/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/)
+
+## Support
+
+There are a substantial about of questions regarding the package on [StackOverflow](https://stackoverflow.com/questions/tagged/fluent-migrator)
+
+The [docs](https://fluentmigrator.github.io/articles/intro.html) contain good information for getting started, and some more advanced topics such as migration version enforcing etc
+
+If you notice a bug, you can [open an issue here](https://github.com/fluentmigrator/fluentmigrator/issues)
+
 ## Set up
 
 For adding Fluent Migrator to a project, 2 nuget packages are required from the Nuget Package Manager:
@@ -106,6 +127,10 @@ This should provide the output of the following:
     CreateSchema new_schema
     Committing Transaction
     202006231437: AddNewSchema migrated
+
+The process of adding another migration is adding it to the same directory, (ensuring it is within the same
+assembly), just by changing the version within the migration constructor in the annotation. There is an
+example of a second migration with in the Migrations folder in this project.
 
 ## dot-fm tool
 

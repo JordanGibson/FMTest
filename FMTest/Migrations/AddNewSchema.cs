@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FMTest.Migrations
 {
-    [Migration(202006231437)]
+    [Migration(202006231441)]
     public class AddNewSchema : Migration
     {
         public override void Up()
