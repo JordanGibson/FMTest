@@ -8,11 +8,6 @@ database schema and are an alternative to creating lots of sql
 scripts that have to be run manually. Database schema 
 changes are described in classes written in C#.
 
-Package      | Version   | Downloads
---------------------|----------|-------------
-FluentMigrator    | [![FluentMigrator](https://img.shields.io/nuget/v/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/) | [![FluentMigrator](https://img.shields.io/nuget/dt/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/)
-FluentMigrator.Runner    | [![FluentMigratorRunner](https://img.shields.io/nuget/v/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/) | [![FluentMigratorRunner](https://img.shields.io/nuget/dt/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/)
-
 ## Support
 
 There are a substantial about of questions regarding the package on [StackOverflow](https://stackoverflow.com/questions/tagged/fluent-migrator)
@@ -24,8 +19,11 @@ If you notice a bug, you can [open an issue here](https://github.com/fluentmigra
 ## Set up
 
 For adding Fluent Migrator to a project, 2 nuget packages are required from the Nuget Package Manager:
- - Fluent Migrator [![FluentMigrator](http://img.shields.io/nuget/dt/FluentMigrator.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator/)
- - Fluent Migrator Runner [![FluentMigrator.Runner](http://img.shields.io/nuget/dt/FluentMigrator.Runner.svg?style=flat)](https://www.nuget.org/packages/FluentMigrator.Runner/)
+
+Package      | Version   | Downloads |
+------------------|----------|------------|
+FluentMigrator    | [![FluentMigrator](https://img.shields.io/nuget/v/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/) | [![FluentMigrator](https://img.shields.io/nuget/dt/FluentMigrator.svg)](https://www.nuget.org/packages/FluentMigrator/) |
+FluentMigrator.Runner    | [![FluentMigratorRunner](https://img.shields.io/nuget/v/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/) | [![FluentMigratorRunner](https://img.shields.io/nuget/dt/FluentMigrator.Runner.svg)](https://www.nuget.org/packages/FluentMigrator.Runner/) |
 
 or execute the following command in the Package Manager Console (Tools > Nuget Packet Manager > Package Manager Console):
 
