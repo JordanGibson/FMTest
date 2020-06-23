@@ -118,35 +118,35 @@ For all commands, the connection string, processor and assembly must all be supp
 in the command using the parameters -c, -p and -a respectively.
 
 
-<b>Applies all found migrations in the assembly
+<b>Applies all found migrations in the assembly</b>
 
     migrate
 
-Applies all found migrations in the assembly up to a given version
+<b>Applies all found migrations in the assembly up to a given version</b>
 
     migrate [params] up -t 202006231100
 
-Applied all found migrations in the assembly down to a given version
+<b>Applied all found migrations in the assembly down to a given version</b>
 
     migrate [params] down -t 202006231100
 
-Rollsback the last applied migration
+<b>Rollsback the last applied migration</b>
 
     rollback
 
-Rollsback to a given version
+<b>Rollsback to a given version</b>
 
     rollback [params] to 202006231100
 
-Rollsback by x steps
+<b>Rollsback by x steps</b>
 
     rollback [params] by x
 
-Rollsback all migrations
+<b>Rollsback all migrations</b>
 
     rollback [params] all
 
-Validates the order of all applied migrations</b>
+<b>Validates the order of all applied migrations</b>
 
     validate versions
 
