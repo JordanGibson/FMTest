@@ -6,39 +6,13 @@ using System.Threading.Tasks;
 using FluentMigrator;
 using FluentMigrator.Builders;
 using FluentMigrator.Runner;
+using FMTest.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FMTest
 {
-    [Migration(4)]
-    public class AddNewTenantSchema : Migration
-    {
-        public override void Up()
-        {
-            Create.Schema("dev_1");
-            Create.Table("security.user").InSchema("dev_1")
-                .WithColumn("Id").AsInt32().PrimaryKey()
-                .WithColumn("Name").AsString();
-            Create.Table("security.role").InSchema("dev_1")
-                .WithColumn("Name").AsString();
-
-            Alter.Table("security.user").InSchema("dev_1")
-                .AddColumn("Password").AsString();
-
-            Insert.IntoTable("security.user").InSchema("dev_1")
-                .Row(new { Id = 21, Name = "Test Person", Password = "P@ssword" });
-        }
-
-        public override void Down()
-        {
-            Delete.Table("security.user").InSchema("dev_1");
-            Delete.Table("security.role").InSchema("dev_1");
-            Delete.Schema("dev_1");
-        }
-    }
-
-    class Program
-    {
+    /*
+    class Program {
         static void Main(string[] args)
         {
             var serviceProvider = CreateServices();
@@ -62,9 +36,9 @@ namespace FMTest
                     // Add SQLite support to FluentMigrator
                     .AddPostgres()
                     // Set the connection string
-                    .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=pass")
+                    .WithGlobalConnectionString("Host=localhost:50185;Database=test;Username=postgres;Password=pass")
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(AddNewTenantSchema).Assembly).For.Migrations())
+                    .ScanIn(typeof(_202006231100_AddNewSchema).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 // Build the service provider
@@ -85,6 +59,49 @@ namespace FMTest
             Console.ReadLine();
 
             runner.MigrateDown(3);
+        }
+    }
+    */
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var serviceProvider = CreateDIServices();
+
+            // Placed in a using scope to ensure disposal of resources
+            using (var scope = serviceProvider.CreateScope())
+            {
+                // Instantiate the runner from the services scope
+                var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+
+                // Execute the migrations
+                runner.MigrateUp();
+
+                // Delays the completion of execution to observe console output
+                Console.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// Configure the dependency injection services
+        /// </summary>
+        private static IServiceProvider CreateDIServices()
+        {
+            return new ServiceCollection()
+                // Add common FluentMigrator services
+                .AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    // Add Postgres support to FluentMigrator
+                    .AddPostgres()
+                    // Set the connection string
+                    .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=pass")
+                    // Define the assembly containing the migrations
+                    .ScanIn(typeof(AddNewSchema).Assembly).For.Migrations())
+                // Enable logging to console in the FluentMigrator way
+                .AddLogging(lb => lb.AddFluentMigratorConsole())
+                // Build the service provider
+                .BuildServiceProvider(false);
         }
     }
 }
