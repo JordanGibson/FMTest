@@ -11,58 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FMTest
 {
-    /*
-    class Program {
-        static void Main(string[] args)
-        {
-            var serviceProvider = CreateServices();
-
-            using (var scope = serviceProvider.CreateScope())
-            {
-                UpdateDatabase(scope.ServiceProvider);
-            }
-        }
-
-
-        /// <summary>
-        /// Configure the dependency injection services
-        /// </summary>
-        private static IServiceProvider CreateServices()
-        {
-            return new ServiceCollection()
-                // Add common FluentMigrator services
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    // Add SQLite support to FluentMigrator
-                    .AddPostgres()
-                    // Set the connection string
-                    .WithGlobalConnectionString("Host=localhost:50185;Database=test;Username=postgres;Password=pass")
-                    // Define the assembly containing the migrations
-                    .ScanIn(typeof(_202006231100_AddNewSchema).Assembly).For.Migrations())
-                // Enable logging to console in the FluentMigrator way
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                // Build the service provider
-                .BuildServiceProvider(false);
-        }
-
-        /// <summary>
-        /// Update the database
-        /// </summary>
-        private static void UpdateDatabase(IServiceProvider serviceProvider)
-        {
-            // Instantiate the runner
-            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
-            // Execute the migrations
-            runner.MigrateUp();
-
-            Console.ReadLine();
-
-            runner.MigrateDown(3);
-        }
-    }
-    */
-
     class Program
     {
         static void Main(string[] args)
@@ -99,9 +47,9 @@ namespace FMTest
                     // Add Postgres support to FluentMigrator
                     .AddPostgres()
                     // Set the connection string
-                    .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=pass")
+                    .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=")
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(CreateSecurityTable).Assembly).For.Migrations())
+                    .ScanIn(typeof(AddSecuritySchema).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 // Build the service provider

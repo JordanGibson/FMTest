@@ -12,14 +12,12 @@ namespace FMTest.Migrations
     {
         public override void Up()
         {
-            Create.Table("security").InSchema("new_schema")
-                .WithColumn("user").AsString().PrimaryKey()
-                .WithColumn("role").AsString().NotNullable();
+            
         }
 
         public override void Down()
         {
-            Delete.Table("security").InSchema("new_schema");
+            
         }
     }
 }
