@@ -55,6 +55,7 @@
     <Compile Include="Migrations\202006231446_AlterUserTable.cs" />
     <Compile Include="Migrations\202006231447_EditViewAndFunction.cs" />
     <Compile Include="Migrations\202006231444_CreateViewAndFunction.cs" />
+    <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

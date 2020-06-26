@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using FluentMigrator;
@@ -16,7 +17,23 @@ namespace FMTest
     {
         static void Main(string[] args)
         {
-            var serviceProvider = CreateDIServices("dev_1");
+            var ws = new WebServer(SendResponse, "http://localhost:8080/newTenant/");
+            ws.Run();
+            Console.WriteLine("Web Server running... Press any key to quit.");
+            Console.ReadKey();
+            ws.Stop();
+        }
+
+        private static string SendResponse(HttpListenerRequest request)
+        {
+            string tenantName = request.QueryString.GetValues("name")?[0];
+            CreateTenant(tenantName);
+            return $"<HTML><BODY>Created the new schema \"{tenantName}\"</BODY></HTML>";
+        }
+
+        private static void CreateTenant(String tenantName)
+        {
+            var serviceProvider = CreateDiServices(tenantName);
 
             // Placed in a using scope to ensure disposal of resources
             using (var scope = serviceProvider.CreateScope())
@@ -28,17 +45,13 @@ namespace FMTest
 
                 // Execute the migrations
                 runner.MigrateUp();
-
-                Console.ReadLine();
-                
-                runner.MigrateDown(2);
             }
         }
 
         /// <summary>
         /// Configure the dependency injection services
         /// </summary>
-        private static IServiceProvider CreateDIServices(String tenantName)
+        private static IServiceProvider CreateDiServices(String tenantName)
         {
             return new ServiceCollection()
                 .AddSingleton<IConventionSet>(new DefaultConventionSet(tenantName, null))

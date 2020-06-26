@@ -130,6 +130,16 @@ The process of adding another migration is adding it to the same directory, (ens
 assembly), just by changing the version within the migration constructor in the annotation. There is an
 example of a second migration with in the Migrations folder in this project.
 
+## WebServer implementation
+
+This example has been adapted to instead run on localhost, and create a server to listen for requests
+to create a new tenant. A request can be made by going to the web browser and navigating to
+
+    http://localhost:8080/newTenant?name=dev_1
+    
+while the server is running. This will create a new schema in the database named `test` with the name `dev_1`.
+The argument in the URL can be changed to create a schema with a different name.
+
 ## dot-fm tool
 
 To install the `dot-fm` tool, execute the following command:
