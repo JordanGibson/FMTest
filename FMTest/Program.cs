@@ -24,15 +24,14 @@ namespace FMTest
                 // Instantiate the runner from the services scope
                 var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
 
-                runner.ListMigrations();
+                //runner.ListMigrations();
 
                 // Execute the migrations
                 runner.MigrateUp();
 
-                // Delays the completion of execution to observe console output
                 Console.ReadLine();
-
-                //runner.MigrateDown(2);
+                
+                runner.MigrateDown(2);
             }
         }
 
