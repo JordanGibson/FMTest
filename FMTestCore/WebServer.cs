@@ -4,9 +4,9 @@ using System.Net;
 using System.Text;
 using System.Threading;
 
-namespace FMTest
+namespace FMTestCore
 {
-   public class WebServer
+    public class WebServer
    {
       private readonly HttpListener _listener = new HttpListener();
       private readonly Func<HttpListenerRequest, string> _responderMethod;
@@ -67,9 +67,9 @@ namespace FMTest
                         ctx.Response.ContentLength64 = buf.Length;
                         ctx.Response.OutputStream.Write(buf, 0, buf.Length);
                      }
-                     catch
+                     catch (Exception ex)
                      {
-                        // ignored
+                        Console.WriteLine(ex.Message);
                      }
                      finally
                      {

@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using FluentMigrator;
-using FluentMigrator.Builders;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Conventions;
 using FMTest.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FMTest
+namespace FMTestCore
 {
     class Program
     {
