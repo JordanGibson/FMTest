@@ -3,12 +3,12 @@ using FluentMigrator;
 
 namespace FMTest.Migrations
 {
-    [Migration(202006231444)]
+    //[Migration(202006231444)]
     public class CreateViewAndFunction : Migration
     {
         public override void Up()
         {
-            Execute.Sql(@"CREATE OR REPLACE FUNCTION security.user_to_json (name varchar, role_name varchar) RETURNS jsonb AS $$
+            Execute.Sql(@"CREATE OR REPLACE FUNCTION user_to_json (name varchar, role_name varchar) RETURNS jsonb AS $$
                             BEGIN
                             RETURN json_build_object(
                                     'name', name,
@@ -19,20 +19,20 @@ namespace FMTest.Migrations
                             END;
                         $$ LANGUAGE plpgsql;
 
-                        CREATE OR REPLACE VIEW security.user_json AS
+                        CREATE OR REPLACE VIEW user_json AS
                         SELECT
-                            security.user_to_json(
+                            user_to_json(
                                 u.first_name || ' ' || u.last_name,
                                 r.name)
-                        FROM security.user u
-                        JOIN security.role r
+                        FROM dev_2.user u
+                        JOIN dev_2.role r
                             ON r.id = u.role_id;
                         ");
         }
 
         public override void Down()
         {
-            Execute.Sql("DROP VIEW IF EXISTS security.user_json;DROP FUNCTION IF EXISTS security.user_to_json (name varchar, role_name varchar);");
+            Execute.Sql("DROP VIEW IF EXISTS user_json;DROP FUNCTION IF EXISTS user_to_json (name varchar, role_name varchar);");
         }
     }
 }

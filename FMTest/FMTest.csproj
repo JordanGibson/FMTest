@@ -163,9 +163,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Migrations\202006231445_CreateSecurityAddress.cs" />
-    <Compile Include="Migrations\202006231444_CreateViewAndFunction.cs" />
-    <Compile Include="Migrations\202006231447_EditViewAndFunction.cs" />
     <Compile Include="Migrations\202006231446_AlterUserTable.cs" />
+    <Compile Include="Migrations\202006231447_EditViewAndFunction.cs" />
+    <Compile Include="Migrations\202006231444_CreateViewAndFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

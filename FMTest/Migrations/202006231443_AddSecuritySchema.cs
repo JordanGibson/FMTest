@@ -12,17 +12,15 @@ namespace FMTest.Migrations
     {
         public override void Up()
         {
-            Create.Schema("security");
-
-            Create.Table("role").InSchema("security")
+            Create.Table("role")
                 .WithColumn("id").AsInt32().NotNullable().Identity().PrimaryKey("pk_security_role")
                 .WithColumn("name").AsString().NotNullable();
 
-            Create.Table("user").InSchema("security")
+            Create.Table("user")
                 .WithColumn("id").AsInt32().NotNullable().Identity().PrimaryKey("pk_security_user")
                 .WithColumn("first_name").AsString().NotNullable()
                 .WithColumn("last_name").AsString().NotNullable()
-                .WithColumn("role_id").AsInt32().ForeignKey("fk_security_user_role", "security", "role", "id");
+                .WithColumn("role_id").AsInt32().ForeignKey("fk_security_user_role", "role", "id");
         }
     }
 }

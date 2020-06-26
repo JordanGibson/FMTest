@@ -12,13 +12,13 @@ namespace FMTest.Migrations
     {
         public override void Up()
         {
-            Alter.Table("user").InSchema("security").AddColumn("address_id").AsInt32()
-                .ForeignKey("fk_security_user_address", "security", "address", "id");
+            Alter.Table("user").AddColumn("address_id").AsInt32()
+                .ForeignKey("fk_security_user_address", "address", "id");
         }
 
         public override void Down()
         {
-            Delete.Column("address_id").FromTable("user").InSchema("security");
+            Delete.Column("address_id").FromTable("user");
         }
     }
 }

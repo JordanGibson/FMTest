@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentMigrator;
 using FluentMigrator.Builders;
 using FluentMigrator.Runner;
+using FluentMigrator.Runner.Conventions;
 using FMTest.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,7 @@ namespace FMTest
     {
         static void Main(string[] args)
         {
-            var serviceProvider = CreateDIServices();
+            var serviceProvider = CreateDIServices("dev_1");
 
             // Placed in a using scope to ensure disposal of resources
             using (var scope = serviceProvider.CreateScope())
@@ -23,7 +24,7 @@ namespace FMTest
                 // Instantiate the runner from the services scope
                 var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
 
-                //runner.ListMigrations();
+                runner.ListMigrations();
 
                 // Execute the migrations
                 runner.MigrateUp();
@@ -38,21 +39,16 @@ namespace FMTest
         /// <summary>
         /// Configure the dependency injection services
         /// </summary>
-        private static IServiceProvider CreateDIServices()
+        private static IServiceProvider CreateDIServices(String tenantName)
         {
             return new ServiceCollection()
-                // Add common FluentMigrator services
+                .AddSingleton<IConventionSet>(new DefaultConventionSet(tenantName, null))
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
-                    // Add Postgres support to FluentMigrator
                     .AddPostgres()
-                    // Set the connection string
                     .WithGlobalConnectionString("Host=localhost;Database=test;Username=postgres;Password=")
-                    // Define the assembly containing the migrations
                     .ScanIn(typeof(AddSecuritySchema).Assembly).For.Migrations())
-                // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
-                // Build the service provider
                 .BuildServiceProvider(false);
         }
     }
